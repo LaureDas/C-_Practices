@@ -1,4 +1,4 @@
 # C-_Practices
 
-Ignore main, view only main.cpp
+Ignore main file
 Connected via Repl.it
