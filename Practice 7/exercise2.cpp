@@ -18,6 +18,7 @@ template<typename T>
 class Stack: public StackI <T>{
   private:
     int number_elements;
+    int current_element;
     int size;
     T *t;
 
@@ -25,19 +26,22 @@ class Stack: public StackI <T>{
   //first constructor of size 20
     Stack(){
       number_elements=0;
+      current_element=0;
       size=20;
       t = new T[20];
     }
   //second constructor of size n
     Stack(int n){
       number_elements=0;
+      current_element=0;
       size=n;
       t = new T[n];
     }
 
     void push(T x){
       if(number_elements<size && number_elements>=0){
-        t[size-number_elements]=x;
+        current_element+=1;
+        t[current_element]=x;
         number_elements+=1;
       }
       else{
@@ -46,10 +50,12 @@ class Stack: public StackI <T>{
     };
 
     void pop(){
+      current_element=current_element-1;
       if(isEmpty()){
+        current_element=current_element+1;
         cout<<"Empty Stack Exception"<<endl;
       }
-      else{//come back to this!!!
+      else{
         number_elements=number_elements-1;
       }
     };
@@ -59,8 +65,8 @@ class Stack: public StackI <T>{
         cout<<"Empty Stack Exception"<<endl;
       }
       else{
-        cout<<"The top of the stack is: "<< t[number_elements]<<endl;
-        return t[number_elements];
+        cout<<"The top of the stack is: "<< t[current_element]<<endl;
+        return t[current_element];
       }
     };
 
@@ -97,5 +103,11 @@ int main(){
   s.pop();
   s.push(555);
   s.top();
+  s.push(22);
+  s.top();
+  s.push(55);
+  s.top();
+  s.pop();
   s.print();
+ 
 }
