@@ -6,8 +6,6 @@
 
 using namespace std;
 
-
-
 class Date{
   private:
     int day;
@@ -120,6 +118,7 @@ class Patient{
 };
 
 int main(){
+    //Creating Patient Mary and feeding data
     Patient mary("Mary");
     mary.addRecord(Blood(94,61, Date(2,5,2013)));
     mary.addRecord(Blood(97,65, Date(3,5,2013)));
@@ -129,6 +128,7 @@ int main(){
     mary.addRecord(Blood(145,89, Date(7,5,2013)));
     //mary.printData();
 
+    //Creating Patient John and feeding data
     Patient john("John");
     john.addRecord(Blood(88,57, Date(15,5,2013)));
     john.addRecord(Blood(95,61, Date(16,5,2013)));
@@ -137,9 +137,9 @@ int main(){
     john.addRecord(Blood(176,104, Date(19,5,2013)));
     john.addRecord(Blood(176,110, Date(20,5,2013)));
 
+    //print reports for patients John and Mary 
     mary.printReport();
     john.printReport();
-
-
+    
     return 0;
 }
