@@ -45,7 +45,7 @@ class Stack: public StackI <T>{
         number_elements+=1;
       }
       else{
-        cout<<"Full Stack Exception"<<endl;
+        cout<<"FullStackException"<<endl;
       }
     };
 
@@ -53,7 +53,7 @@ class Stack: public StackI <T>{
       current_element=current_element-1;
       if(isEmpty()){
         current_element=current_element+1;
-        cout<<"Empty Stack Exception"<<endl;
+        cout<<"EmptyStackException"<<endl;
       }
       else{
         number_elements=number_elements-1;
@@ -62,7 +62,7 @@ class Stack: public StackI <T>{
 
     T top(){
       if(isEmpty()){
-        cout<<"Empty Stack Exception"<<endl;
+        cout<<"EmptyStackException"<<endl;
       }
       else{
         cout<<"The top of the stack is: "<< t[current_element]<<endl;
@@ -72,10 +72,11 @@ class Stack: public StackI <T>{
 
     void print(){
       if(isEmpty()){
-        cout<<"Empty Stack Exception"<<endl;
+        cout<<"EmptyStackException"<<endl;
       }
       else{
         cout<<"[";
+        //print backwards to have the top on the left of the array
         for (int index=number_elements;index>0;index--){ 
           cout<<t[index]<<" ";
         }
@@ -84,17 +85,26 @@ class Stack: public StackI <T>{
       }
     };
 
+    //override bool method 
     bool isEmpty(){
       if(number_elements==0){
+        //1 is true
         return 1;
       }
+      //0 is false
       else{return 0;}
     }
+
+    virtual ~Stack(){//destructor
+      cout<< "Destructing Stack"<<endl;
+    }
+    
 };
 
 
 int main(){
-  Stack <int> s = Stack<int>(5);
+  Stack <int> s = Stack<int>(8);
+  //testing stack feature
   s.push(200);
   s.push(12);
   s.push(24);
@@ -109,5 +119,10 @@ int main(){
   s.top();
   s.pop();
   s.print();
- 
+  s.push(15);
+  s.push(1);
+  s.push(5);
+  s.push(45);
+  s.push(165);
+  s.print();
 }
