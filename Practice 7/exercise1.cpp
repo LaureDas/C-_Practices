@@ -74,13 +74,12 @@ class Patient{
           int max_systolic=0;
           int max_index=0;
           int count=0;
-                     
+
           //when threshold becomes 1, we are above 140
           int threshold=0;
           int sum_dias=0;
           float average_dias=0;
 
-          
           for (int index=0; index<blood_data.size(); ++index){
             //highest abnormal systolic blood pressures
             if (blood_data[index].getSys() > max_systolic){
@@ -97,9 +96,7 @@ class Patient{
             sum_dias += blood_data[index].getDias();  
           };
 
-          
-
-          //We print the highest systolic pressures with there associated diastolic pressure and date
+          //We print the list of highest systolic pressures with there associated diastolic pressure and date
           cout<<name<<  "'s highest abnormal systolic blood pressure is: "<<endl;
           for (int i=0; i<blood_data.size(); ++i){
             //Check if multiple maximal values
@@ -119,10 +116,6 @@ class Patient{
           //Calculate average of diastolic blood pressures
           average_dias= float(sum_dias) / float(blood_data.size());
           cout<< "The average diastolic blood pressure of "<< name<< " is "<< average_dias<< endl;
-
-          //list of pressure records for a patient who's systolic is maximal
-          cout<<"The pressure records of "<<name<< " whose systolic pressure is maximal is:" << endl;
-
         };
 };
 
@@ -131,10 +124,22 @@ int main(){
     mary.addRecord(Blood(94,61, Date(2,5,2013)));
     mary.addRecord(Blood(97,65, Date(3,5,2013)));
     mary.addRecord(Blood(150,99, Date(4,5,2013)));
-    mary.addRecord(Blood(177,88, Date(5,5,2013)));
+    mary.addRecord(Blood(123,88, Date(5,5,2013)));
     mary.addRecord(Blood(177,110, Date(6,5,2013)));
     mary.addRecord(Blood(145,89, Date(7,5,2013)));
     //mary.printData();
+
+    Patient john("John");
+    john.addRecord(Blood(88,57, Date(15,5,2013)));
+    john.addRecord(Blood(95,61, Date(16,5,2013)));
+    john.addRecord(Blood(114,80, Date(17,5,2013)));
+    john.addRecord(Blood(151,96, Date(18,5,2013)));
+    john.addRecord(Blood(176,104, Date(19,5,2013)));
+    john.addRecord(Blood(176,110, Date(20,5,2013)));
+
     mary.printReport();
+    john.printReport();
+
+
     return 0;
 }
