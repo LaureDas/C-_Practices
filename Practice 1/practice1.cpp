@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 //exercise 3
@@ -94,6 +95,33 @@ void max_value(int n){
     cout<<"minimum:"<<min;
 }
 
+//exercise8
+
+void pi_approx(double n){
+    double pi=0.0;
+    for(int j=0; j<=n; j++){
+        pi+= pow(-1, j) * 4/(2*j+1);
+    }
+    cout.precision(50);
+    cout<<pi<<endl;
+}
+
+void pi_approx_bis(double error, double n){
+    double pi=0.0;
+    double pi_previous=0.0;
+    double delta= pi-pi_previous;
+    while(abs(delta)< error){
+        for(int j=0; j<n; j++){
+            pi_previous+= pow(-1, j-1) * 4/(2*j);
+            pi+= pow(-1, j) * 4/(2*j+1);
+            delta= pi-pi_previous;
+            j++;
+        }
+    }
+    cout.precision(50);
+    cout<<pi<<endl;
+}
+
 int main(){
     int numberx, numbery, prints;
     //cout<<"Input two integers"<<endl;
@@ -105,6 +133,8 @@ int main(){
     //print_five();
     //print_triangle();
     //print_reverse_triangle();
-    max_value(10);
+    //max_value(10);
+    pi_approx(50);
+    pi_approx_bis(2, 50);
     return 0;
 }
