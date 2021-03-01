@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//exercise 3
 void multiple(int x, int y){
     int test=0;
     for(int i=1; i<=y; i++){
@@ -20,11 +21,22 @@ void multiple(int x, int y){
     
 }
 
+//exercise 4
+void print_start(int n){
+    int count=0;
+    while(count<n){
+        cout<<"*";
+        count++;
+    }
+}
+
 int main(){
-    int numberx, numbery;
-    cout<<"Input two integers"<<endl;
-    cin>> numberx;
-    cin>> numbery;
-    multiple(numberx,numbery);
+    int numberx, numbery, prints;
+    //cout<<"Input two integers"<<endl;
+    //cin>> numberx;
+    //cin>> numbery;
+    //multiple(numberx,numbery);
+    cin>>prints;
+    print_start(prints);
     return 0;
 }
