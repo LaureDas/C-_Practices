@@ -19,6 +19,10 @@ void difference_real_vector(const double a1 [], const double a2[], double r[], i
 void product_real_scalar(const double a1[], double r[], int n, int scalar);
 void product_real_scalars(const double a1[], const double a2[], int n);
 int search_min(double v[], int l, int h);
+void selection_sort(double v[], int n);
+void random_double_matrix(double mat[][3], int s1, int s2, double m, double M);
+void print_double_matrix(double mat[][3], int s1, int s2);
+int product_matrix_vector(double mat[][3], int s1, int s2,double v1[], double v2[], int v1_size, int v2_size);
 
 int main()
 {
@@ -53,6 +57,21 @@ int main()
   int result_search_min;
   result_search_min=search_min(f, l, h);
   cout<<result_search_min<<endl;
+
+  //EXERCISE 7 TEST
+  int size_f=12;
+  selection_sort(f, size_f); 
+
+  //EXERCISE 9 TEST
+  double matrix[3][3]={
+    {1,2,3},
+    {4,5,6},
+    {7,8,9}
+    };
+  double v1[]={1, 1, 1};
+  double v2[3];
+  product_matrix_vector(matrix, 3, 3, v1, v2, 3, 3);
+
   /*srand(time(0)); // initialisation of random number generation, see lecture notes
 
   int v1[ms], s;
@@ -173,4 +192,59 @@ int search_min(double v[], int l, int h){
     }
   }
   return index;
+}
+
+//EXERCISE 7
+void selection_sort(double v[], int n){
+  int min=0;
+  int min_index;
+  int current_value;
+  for(int i=0; i<n; i++){
+    min= search_min(v, i,n-1);
+    current_value=v[i];
+    v[i]=v[min];
+    v[min]=current_value;
+  }
+  print_double_vector(v,n);
+}
+
+//EXERCISE 8
+void random_double_matrix(double mat[][ms], int s1, int s2, double m, double M){
+  int i1 , i2 ;
+  for (i1=0;i1<s1;i1++){
+     for (i2=0;i2<s2;i2++){
+       mat[i1 ][ i2]=m+(M-m)*(double)rand()/RAND_MAX;
+     }
+  } 
+}
+
+void print_double_matrix(double mat[][3], int s1, int s2){
+  int i1 , i2 ;
+    for (i1=0;i1<s1;i1++){
+      for (i2=0;i2<s2;i2++){
+        cout<<mat[i1][i2];
+      }
+      cout<<endl;
+    } 
+    cout<<endl;
+}
+
+//EXERCISE 9
+int product_matrix_vector(double mat[][3], int s1, int s2,double v1[], double v2[], int v1_size, int v2_size){
+  int result=0;
+  print_double_matrix(mat, s1, s2);
+  if(s2 != v1_size){
+    return -1;
+  }
+  if(s1 != v2_size){
+    return -1;
+  }
+  for(int i=0; i<s1; i++){
+    for(int j=0; j<s2; j++){
+      result+=mat[i][j]*v1[j];
+    }
+    v2[i]=result;
+  }
+  print_double_vector(v2, v2_size);
+  return 0;
 }
